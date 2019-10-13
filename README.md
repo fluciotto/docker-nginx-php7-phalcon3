@@ -1,1 +1,1 @@
-# docker-nginx-php5-phalcon2
+# docker-nginx-php7-phalcon3
