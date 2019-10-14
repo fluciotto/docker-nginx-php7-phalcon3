@@ -2,7 +2,10 @@ FROM ubuntu:18.04
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
 	curl \
+	software-properties-common \
 	sudo
+
+RUN add-apt-repository ppa:ondrej/php
 
 RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | sudo bash
 
@@ -12,14 +15,14 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt -y install \
 	libpcre3-dev \
 	make \
 	nginx-extras \
-	php7.2-cli \
-	php7.2-dev \
-	php7.2-fpm \
-	php7.2-gd \
-	php7.2-xdebug \
-	php7.2-mysql \
-	php7.2-curl \
-	php7.2-phalcon
+	php7.3-cli \
+	php7.3-dev \
+	php7.3-fpm \
+	php7.3-gd \
+	php7.3-xdebug \
+	php7.3-mysql \
+	php7.3-curl \
+	php7.3-phalcon
 
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD default /etc/nginx/sites-available/default
@@ -34,4 +37,4 @@ VOLUME ["/var/www"]
 
 EXPOSE 80
 
-CMD service php7.2-fpm start && nginx
+CMD service php7.3-fpm start && nginx
