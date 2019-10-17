@@ -22,7 +22,8 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt -y install \
 	php7.3-xdebug \
 	php7.3-mysql \
 	php7.3-curl \
-	php7.3-phalcon
+	php7.3-phalcon \
+	php7.3-zip
 
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD default /etc/nginx/sites-available/default
