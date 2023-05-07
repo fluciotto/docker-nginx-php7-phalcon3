@@ -47,6 +47,8 @@ RUN mkdir /run/php/
 
 RUN echo "<?php phpinfo(); ?>" > /var/www/index.php
 
+RUN usermod -u 1000 www-data
+
 VOLUME ["/var/www"]
 
 EXPOSE 80
