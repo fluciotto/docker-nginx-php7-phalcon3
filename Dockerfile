@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
 	curl \
@@ -9,7 +9,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
 	nginx-extras
 
 # Install PHP 7.3 and some extensions
-RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
 	php7.3-cli \
 	php7.3-curl \
@@ -36,7 +36,6 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 
 # PHP-FPM: log errors to stderr
 RUN sed -i 's/error_log = \/var\/log\/php7.3-fpm.log/error_log = \/proc\/self\/fd\/2/' /etc/php/7.3/fpm/php-fpm.conf
-
 # PHP-FPM: log workers errors
 RUN sed -i 's/;catch_workers_output = yes/catch_workers_output = yes/' /etc/php/7.3/fpm/pool.d/www.conf
 RUN sed -i 's/;decorate_workers_output = no/decorate_workers_output = no/' /etc/php/7.3/fpm/pool.d/www.conf
